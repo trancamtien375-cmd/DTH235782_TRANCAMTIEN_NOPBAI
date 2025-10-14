@@ -2,22 +2,8 @@
 # Yêu cầu:
 # Với n là chiều cao của hình, hãy dựa vào n để Vẽ các hình dưới đây
 
-n = int(input("Nhập chiều cao n: "))
+n = 4
 print("___________________________\n")
-# for i in range(1, n + 1):
-#     print('*' * i)
-# for i in range(n - 1, 0, -1):
-#     print('*' * i)
-# for i in range(1, n + 1):
-#     print(' ' * (n - i) + '*' * i)
-
-
-#Hình vuông rỗng
-# for i in range(n):
-#     if i == 0 or i == n - 1:
-#         print('*' * n)
-#     else:
-#         print('*' + ' ' * (n - 2) + '*')
 
 for i in range(n):
     for j in range(n):
@@ -29,29 +15,33 @@ for i in range(n):
 
 print("___________________________\n")
 
-#Hình tam giác cân lệch phải
-for i in range(1, n + 1):
-    print(' ' * (n - i) + '*' * i)
-
-print("___________________________\n")
-
-#Hai hình tam giác cân rỗng
-mid = n - 1   # dòng giữa (vị trí hàng ngang)
-
+#Hình tam giác vuông cân lệch phải
 for i in range(n):
     for j in range(n):
-        # phần 1: chéo từ (0,0) xuống (mid-1, mid-1)
-        if i < mid and j == i:
+        # In sao khi cột >= hàng (để canh phải)
+        if j >= n - 1 - i:
             print("*", end=" ")
-        # phần 2: hàng ngang giữa
-        elif i == mid:
+        else:
+            print(" ", end=" ")
+    print()
+print("___________________________\n")
+
+
+#hình tam giác vuông rỗng
+
+for i in range(n*2-1):
+    for j in range(n*2 - 1):
+        # Cột trái luôn có *
+        if j == 0 and i < n - 1 or j == n*2 - 2 and i >= n - 1:
             print("*", end=" ")
-        # phần 3: chéo từ (mid+1, mid+1) xuống (n-1, n-1)
-        elif i > mid and j == n - 1 - (i - mid):
+        # Đường chéo chính
+        elif j == i:
+            print("*", end=" ")
+        # Hàng cuối in toàn *
+        elif i == n - 1:
             print("*", end=" ")
         else:
             print(" ", end=" ")
     print()
 
 
-#Chương trình vẽ các hình theo yêu cầu
